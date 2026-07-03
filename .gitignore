@@ -1,3 +1,6 @@
+# Legacy static portfolio (replaced by the root Vite application)
+/portfolio/
+
 node_modules/
 dist/
 
