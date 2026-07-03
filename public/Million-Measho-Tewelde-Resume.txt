@@ -1,0 +1,20 @@
+MILLION MEASHO TEWELDE
+Full Stack Software Developer
+Calgary, Alberta, Canada
+
+Email: milimeasho@gmail.com
+GitHub: https://github.com/Mimatewe
+LinkedIn: https://www.linkedin.com/in/milliontewelde
+
+PROFILE
+I build modern web applications, mobile apps, AI systems, and business platforms. I enjoy solving real problems with software.
+
+CORE SKILLS
+React, Vite, JavaScript, Tailwind CSS, Node.js, Express, REST APIs, PostgreSQL, MySQL, Prisma, Supabase, Android, Capacitor, Google Gemini, RAG, Git, Render, Netlify
+
+SELECTED PROJECTS
+Evangadi Forum — Community question and answer platform.
+MovieFlix — Movie discovery application.
+ChatGPT Clone — AI chat application.
+Alberta Driving Test Practice — Mobile learning application.
+Biet App — Community rental platform.
