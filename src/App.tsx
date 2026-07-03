@@ -1,8 +1,8 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { useEffect, useState, type ReactNode } from 'react'
-import { FaArrowRight, FaCheck, FaCode, FaDatabase, FaDownload, FaEnvelope, FaExternalLinkAlt, FaGithub, FaGlobe, FaGooglePlay, FaLightbulb, FaLinkedin, FaMapMarkerAlt, FaMobileAlt, FaPaintBrush, FaPhoneAlt, FaRocket, FaSearch, FaServer, FaTimes, FaWrench } from 'react-icons/fa'
+import { FaArrowRight, FaCheck, FaCode, FaDatabase, FaEnvelope, FaExternalLinkAlt, FaGithub, FaGlobe, FaGooglePlay, FaLightbulb, FaLinkedin, FaMapMarkerAlt, FaMobileAlt, FaPaintBrush, FaPhoneAlt, FaRocket, FaServer, FaTimes, FaWrench } from 'react-icons/fa'
 import { HiMenuAlt3 } from 'react-icons/hi'
-import { focusAreas, projects, skillGroups, type Project } from './data'
+import { projects, skillGroups, type Project } from './data'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -28,61 +28,35 @@ function Header() {
 
 function Hero() {
   return <section id="home" className="hero section">
-    <div className="hero-orb orb-one" /><div className="hero-orb orb-two" />
-    <div className="container hero-grid">
+    <div className="container">
       <motion.div className="hero-copy" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .75, ease }}>
         <h1>Hi, I'm <span>Million Measho <br className="mobile-break" />Tewelde</span></h1>
         <p className="hero-role">Full Stack Software Developer</p>
-        <p className="hero-lead">I build modern web applications, mobile apps, AI systems, and business platforms.</p>
-        <p className="hero-note">I enjoy solving real problems with software.</p>
+        <p className="hero-lead">I build modern web apps, mobile apps, AI systems, and community platforms.</p>
         <div className="hero-actions">
           <a className="button primary" href="#projects">View Projects <FaArrowRight /></a>
           <a className="button secondary" href="#contact">Contact Me <FaEnvelope /></a>
-          <a
-            className="text-button"
-            href="/Million%20Measho%20Tewelde%20Resume.pdf"
-            download="Million Measho Tewelde Resume.pdf"
-          >
-            Download Resume <FaDownload />
-          </a>
         </div>
       </motion.div>
-      <motion.div className="system-visual" initial={{ opacity: 0, scale: .94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, delay: .15, ease }} aria-label="Software systems visualization">
-        <div className="orbit orbit-one" /><div className="orbit orbit-two" />
-        <div className="core"><FaCode /><span>Build</span></div>
-        {focusAreas.map(({ label, icon: Icon }, index) => <motion.div key={label} className={`focus-node node-${index + 1}`} animate={{ y: [0, -7, 0] }} transition={{ repeat: Infinity, duration: 4 + index, delay: index * .3 }}><Icon /><span>{label}</span></motion.div>)}
-      </motion.div>
     </div>
-    <div className="container focus-strip">{focusAreas.map(({ label, icon: Icon }) => <div key={label}><Icon /><span>{label}</span></div>)}</div>
   </section>
 }
-
-function ProjectVisual({ kind }: { kind: Project['kind'] }) {
-  if (kind === 'forum') return <div className="project-visual forum"><div className="visual-top"><span /><span /><span /></div><div className="forum-body"><div className="forum-side" /><div className="forum-feed"><i /><b /><i /><b /></div></div></div>
-  if (kind === 'movie') return <div className="project-visual movie"><div className="movie-search"><FaSearch /> Search movies</div><div className="poster-row"><i /><i /><i /><i /></div></div>
-  if (kind === 'ai') return <div className="project-visual ai"><div className="ai-mark">M</div><div className="chat-lines"><i /><i /><i /></div><div className="prompt">Ask anything <FaArrowRight /></div></div>
-  if (kind === 'mobile') return <div className="project-visual mobile"><div className="phone"><div className="phone-head">Practice Test</div><div className="score">82%</div><i /><i /><i /></div></div>
-  return <div className="project-visual rental"><div className="map"><i /><i /><i /></div><div className="listing"><span /><div><b>Biet</b><small>Find your next home</small></div></div></div>
-}
-
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+function ProjectCard({ project }: { project: Project }) {
   const ActionIcon = project.action === 'Google Play' ? FaGooglePlay : FaExternalLinkAlt
-  return <Reveal className={`project-card project-${index + 1}`}>
-    <ProjectVisual kind={project.kind} />
+  return <Reveal className="project-card">
     <div className="project-content">
-      <div className="project-number">0{index + 1}</div>
-      <h3>{project.title}</h3><p>{project.description}</p>
+      <h3>{project.title}</h3>
+      <p>{project.description}</p>
       <div className="tech-list">{project.technologies.map(tech => <span key={tech}>{tech}</span>)}</div>
       <div className="project-actions">
-        <a href={project.href} target="_blank" rel="noreferrer">{project.action} <ActionIcon /></a>
-        <a className="icon-link" href="https://github.com/Mimatewe" target="_blank" rel="noreferrer" aria-label={`${project.title} GitHub placeholder`}><FaGithub /></a>
+        <a href={project.href} target="_blank" rel="noopener noreferrer">{project.action} <ActionIcon /></a>
+        {project.githubHref && <a href={project.githubHref} target="_blank" rel="noopener noreferrer">GitHub <FaGithub /></a>}
       </div>
     </div>
   </Reveal>
 }
-
 function Projects() {
-  return <section id="projects" className="section projects"><div className="container"><Reveal className="section-heading"><span>Selected work</span><h2>Projects built for real people.</h2><p>Web, mobile, AI, and community products.</p></Reveal><div className="projects-layout">{projects.map((project, index) => <ProjectCard key={project.title} project={project} index={index} />)}</div></div></section>
+  return <section id="projects" className="section projects"><div className="container"><Reveal className="section-heading"><span>Selected work</span><h2>Projects built for real people.</h2><p>Web, mobile, AI, and community products.</p></Reveal><div className="projects-layout">{projects.map(project => <ProjectCard key={project.title} project={project} />)}</div></div></section>
 }
 
 function AboutSkills() {
