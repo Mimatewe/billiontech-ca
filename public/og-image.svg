@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="BILLION TECH INC.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#f5f7fb"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="980" cy="120" r="180" fill="#2563EB" fill-opacity="0.12"/>
+  <circle cx="180" cy="520" r="160" fill="#0A0A0A" fill-opacity="0.05"/>
+  <rect x="80" y="80" width="72" height="72" rx="18" fill="#0A0A0A"/>
+  <text x="116" y="126" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#FFFFFF">BT</text>
+  <text x="80" y="220" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" fill="#0A0A0A">BILLION TECH INC.</text>
+  <text x="80" y="310" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" fill="#171717">Building Modern Software</text>
+  <text x="80" y="370" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" fill="#171717">That Solves Real Problems</text>
+  <text x="80" y="450" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#525252">AI � Software � Mobile � Cloud � Calgary, Alberta</text>
+  <text x="80" y="540" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#2563EB">billiontech.ca</text>
+</svg>

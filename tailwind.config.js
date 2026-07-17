@@ -3,10 +3,20 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
-      colors: { ink: '#07090f', panel: '#0b111d', line: '#1c2a40', accent: '#6178ff' },
-      boxShadow: { glow: '0 0 80px rgba(91,124,255,.14)' }
-    }
+      fontFamily: {
+        sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['Outfit', '"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      colors: {
+        ink: '#0a0a0a',
+        panel: '#ffffff',
+        line: '#e5e7eb',
+        accent: '#2563eb',
+      },
+      boxShadow: {
+        soft: '0 18px 50px rgba(15, 23, 42, 0.08)',
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 }

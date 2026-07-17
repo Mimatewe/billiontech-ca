@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.cheerspictures.com/sitemap.xml
+Sitemap: https://billiontech.ca/sitemap.xml

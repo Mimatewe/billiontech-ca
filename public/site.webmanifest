@@ -1,0 +1,23 @@
+{
+  "name": "BILLION TECH INC.",
+  "short_name": "BILLION TECH",
+  "description": "AI-powered software, web applications, mobile apps, and enterprise solutions from Calgary, Alberta.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0a0a0a",
+  "lang": "en-CA",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml"
+    }
+  ]
+}
