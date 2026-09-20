@@ -1,6 +1,7 @@
 import { animate, motion, useInView, useReducedMotion } from 'framer-motion'
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react'
 import {
+  FaApple,
   FaArrowRight,
   FaCheck,
   FaEnvelope,
@@ -223,6 +224,12 @@ function Services() {
 
 function ProjectCard({ project }: { project: Project }) {
   const ActionIcon = project.action === 'Google Play' ? FaGooglePlay : FaExternalLinkAlt
+  const hasActions =
+    Boolean(project.appStoreHref) ||
+    Boolean(project.googlePlayHref) ||
+    Boolean(project.href && project.action) ||
+    Boolean(project.githubHref)
+
   return (
     <Reveal className="project-card">
       <article className="project-content">
@@ -234,11 +241,23 @@ function ProjectCard({ project }: { project: Project }) {
             <span key={tech}>{tech}</span>
           ))}
         </div>
-        {project.href && project.action ? (
+        {hasActions ? (
           <div className="project-actions">
-            <a href={project.href} target="_blank" rel="noopener noreferrer">
-              {project.action} <ActionIcon aria-hidden="true" />
-            </a>
+            {project.appStoreHref && (
+              <a className="store-link" href={project.appStoreHref} target="_blank" rel="noopener noreferrer">
+                App Store <FaApple aria-hidden="true" />
+              </a>
+            )}
+            {project.googlePlayHref && (
+              <a className="store-link" href={project.googlePlayHref} target="_blank" rel="noopener noreferrer">
+                Google Play <FaGooglePlay aria-hidden="true" />
+              </a>
+            )}
+            {project.href && project.action && (
+              <a href={project.href} target="_blank" rel="noopener noreferrer">
+                {project.action} <ActionIcon aria-hidden="true" />
+              </a>
+            )}
             {project.githubHref && (
               <a href={project.githubHref} target="_blank" rel="noopener noreferrer">
                 GitHub <FaGithub aria-hidden="true" />
