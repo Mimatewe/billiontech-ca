@@ -179,6 +179,56 @@ function Hero() {
   )
 }
 
+function FeaturedApps() {
+  const featuredApps = products.filter(
+    (project) => project.appStoreHref && project.googlePlayHref,
+  )
+
+  if (featuredApps.length === 0) return null
+
+  return (
+    <section className="featured-apps" aria-labelledby="featured-apps-heading">
+      <div className="container">
+        <Reveal className="featured-apps-heading">
+          <span>Download our apps</span>
+          <div>
+            <h2 id="featured-apps-heading">Study anywhere. Download now.</h2>
+            <p>Our latest education apps are available on iPhone, iPad, and Android.</p>
+          </div>
+        </Reveal>
+
+        <div className="featured-apps-grid">
+          {featuredApps.map((app) => (
+            <Reveal key={app.title} className="featured-app">
+              <div className="featured-app-copy">
+                <span className="project-category">{app.category}</span>
+                <h3>{app.title}</h3>
+                <p>{app.description}</p>
+              </div>
+              <div className="featured-app-actions" aria-label={`Download ${app.title}`}>
+                <a href={app.appStoreHref} target="_blank" rel="noopener noreferrer">
+                  <FaApple aria-hidden="true" />
+                  <span>
+                    Download on the
+                    <strong>App Store</strong>
+                  </span>
+                </a>
+                <a href={app.googlePlayHref} target="_blank" rel="noopener noreferrer">
+                  <FaGooglePlay aria-hidden="true" />
+                  <span>
+                    Get it on
+                    <strong>Google Play</strong>
+                  </span>
+                </a>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function Stats() {
   return (
     <section className="section stats" aria-label="Company statistics">
@@ -632,6 +682,7 @@ export default function App() {
       <Header />
       <main>
         <Hero />
+        <FeaturedApps />
         <Stats />
         <Services />
         <Products />
