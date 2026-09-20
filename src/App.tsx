@@ -225,7 +225,7 @@ function chunkItems<T>(items: readonly T[], size: number) {
   return chunks
 }
 
-function useAutoSlide(total: number, delay = 15000) {
+function useAutoSlide(total: number, delay = 2000) {
   const [current, setCurrent] = useState(0)
 
   useEffect(() => {
@@ -260,7 +260,7 @@ function SliderControls({
 
   return (
     <div className="slider-controls">
-      <span className="slider-timing">Auto · 15 sec</span>
+      <span className="slider-timing">Auto · 2 sec</span>
       <div className="slider-dots" aria-label={label}>
         {Array.from({ length: count }, (_, index) => (
           <button
@@ -307,7 +307,7 @@ function Services() {
           <span>Services</span>
           <div>
             <h2 id="services-heading">Enterprise capabilities, without the wall of text.</h2>
-            <p>Four focused capabilities at a time. The next set appears automatically every 15 seconds.</p>
+            <p>Four focused capabilities at a time. The next set appears automatically every 2 seconds.</p>
           </div>
         </Reveal>
 
@@ -401,7 +401,7 @@ function Products() {
           <span>Products</span>
           <div>
             <h2 id="products-heading">Software products built for real users.</h2>
-            <p>Four products at a time, with the next set rotating automatically every 15 seconds.</p>
+            <p>Four products at a time, with the next set rotating automatically every 2 seconds.</p>
           </div>
         </Reveal>
 
