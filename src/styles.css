@@ -347,7 +347,7 @@ button:focus-visible {
   border-radius: 999px;
   background: var(--bg-soft);
 }
-.project-actions { display: flex; align-items: center; gap: 10px; margin-top: auto; padding-top: 22px; }
+.project-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 22px; }
 .project-actions a {
   display: inline-flex;
   align-items: center;
@@ -361,7 +361,8 @@ button:focus-visible {
   border-radius: 999px;
   transition: .2s;
 }
-.project-actions a:first-child {
+.project-actions a:first-child,
+.project-actions a.store-link {
   border-color: transparent;
   color: white;
   background: var(--blue);
