@@ -64,6 +64,8 @@ export type Project = {
   technologies: string[]
   href?: string
   action?: 'Live Demo' | 'Google Play' | 'Website' | 'Learn More'
+  appStoreHref?: string
+  googlePlayHref?: string
   githubHref?: string
 }
 
@@ -78,13 +80,22 @@ export const products: Project[] = [
     action: 'Website',
   },
   {
-    title: 'Alberta Citizenship Quiz',
+    title: 'Canadian Citizenship Quiz 2026',
     description:
-      'AI-powered citizenship preparation platform with practice quizzes and study tools for Android, iOS, and web.',
-    category: 'Education · AI',
-    technologies: ['Android', 'iOS', 'Web', 'AI', 'React'],
-    href: 'https://play.google.com/store/apps/details?id=com.million.class74english',
-    action: 'Google Play',
+      'Canadian citizenship test preparation app with practice quizzes and study tools designed to help learners prepare on iPhone, iPad, and Android.',
+    category: 'Education · Citizenship',
+    technologies: ['Android', 'iOS', 'React', 'Capacitor'],
+    appStoreHref: 'https://apps.apple.com/ca/app/canadian-citizenship-quiz-2026/id6807144436',
+    googlePlayHref: 'https://play.google.com/store/apps/details?id=ca.billiontech.citizenship',
+  },
+  {
+    title: 'Alberta Class 7 & 4',
+    description:
+      'Alberta driver knowledge test preparation app with practice questions for Class 7 learner and Class 4 professional licence test preparation.',
+    category: 'Education · Driving',
+    technologies: ['Android', 'iOS', 'React', 'Capacitor'],
+    appStoreHref: 'https://apps.apple.com/ca/app/alberta-class-7-4/id6805763053?l=fr-CA',
+    googlePlayHref: 'https://play.google.com/store/apps/details?id=com.million.quizapp',
   },
   {
     title: 'Kal Service',
@@ -218,7 +229,7 @@ export const technologies: TechItem[] = [
 ]
 
 export const stats = [
-  { value: 10, suffix: '+', label: 'Projects' },
+  { value: 11, suffix: '+', label: 'Projects' },
   { value: 5000, suffix: '+', label: 'Development Hours' },
   { value: 100, suffix: '%', label: 'Client Commitment' },
   { value: 24, suffix: '/7', label: 'Support' },
