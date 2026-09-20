@@ -145,11 +145,13 @@ function FloatingShapes() {
 }
 
 function Hero() {
+  const featuredApps = products.filter((project) => project.appStoreHref && project.googlePlayHref)
+
   return (
     <section id="home" className="hero section" aria-labelledby="hero-heading">
       <div className="hero-bg" aria-hidden="true" />
       <FloatingShapes />
-      <div className="container">
+      <div className="container hero-layout">
         <motion.div
           className="hero-copy"
           initial={{ opacity: 0, y: 24 }}
@@ -174,58 +176,107 @@ function Hero() {
             </a>
           </div>
         </motion.div>
+
+        <motion.aside
+          className="hero-app-panel"
+          aria-label="Download Billion Tech apps"
+          initial={{ opacity: 0, x: 28 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.75, ease, delay: 0.12 }}
+        >
+          <div className="hero-app-panel-heading">
+            <span>Available now</span>
+            <h2>Study smarter. Download today.</h2>
+          </div>
+
+          <div className="hero-app-list">
+            {featuredApps.map((app) => (
+              <article className="hero-app-card" key={app.title}>
+                <div>
+                  <span className="hero-app-category">{app.category}</span>
+                  <h3>{app.title}</h3>
+                </div>
+                <div className="hero-store-buttons" aria-label={`Download ${app.title}`}>
+                  <a href={app.appStoreHref} target="_blank" rel="noopener noreferrer">
+                    <FaApple aria-hidden="true" />
+                    <span>App Store</span>
+                  </a>
+                  <a href={app.googlePlayHref} target="_blank" rel="noopener noreferrer">
+                    <FaGooglePlay aria-hidden="true" />
+                    <span>Google Play</span>
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <p className="hero-app-note">Free to download · iPhone, iPad & Android</p>
+        </motion.aside>
       </div>
     </section>
   )
 }
 
-function FeaturedApps() {
-  const featuredApps = products.filter(
-    (project) => project.appStoreHref && project.googlePlayHref,
-  )
+function chunkItems<T>(items: readonly T[], size: number) {
+  const chunks: T[][] = []
+  for (let index = 0; index < items.length; index += size) {
+    chunks.push(items.slice(index, index + size))
+  }
+  return chunks
+}
 
-  if (featuredApps.length === 0) return null
+function useAutoSlide(total: number, delay = 15000) {
+  const [current, setCurrent] = useState(0)
+
+  useEffect(() => {
+    if (total <= 1) return
+
+    const interval = window.setInterval(() => {
+      setCurrent((previous) => (previous + 1) % total)
+    }, delay)
+
+    return () => window.clearInterval(interval)
+  }, [delay, total])
+
+  useEffect(() => {
+    if (current >= total && total > 0) setCurrent(0)
+  }, [current, total])
+
+  return [current, setCurrent] as const
+}
+
+function SliderControls({
+  current,
+  count,
+  onSelect,
+  label,
+}: {
+  current: number
+  count: number
+  onSelect: (index: number) => void
+  label: string
+}) {
+  if (count <= 1) return null
 
   return (
-    <section className="featured-apps" aria-labelledby="featured-apps-heading">
-      <div className="container">
-        <Reveal className="featured-apps-heading">
-          <span>Download our apps</span>
-          <div>
-            <h2 id="featured-apps-heading">Study anywhere. Download now.</h2>
-            <p>Our latest education apps are available on iPhone, iPad, and Android.</p>
-          </div>
-        </Reveal>
-
-        <div className="featured-apps-grid">
-          {featuredApps.map((app) => (
-            <Reveal key={app.title} className="featured-app">
-              <div className="featured-app-copy">
-                <span className="project-category">{app.category}</span>
-                <h3>{app.title}</h3>
-                <p>{app.description}</p>
-              </div>
-              <div className="featured-app-actions" aria-label={`Download ${app.title}`}>
-                <a href={app.appStoreHref} target="_blank" rel="noopener noreferrer">
-                  <FaApple aria-hidden="true" />
-                  <span>
-                    Download on the
-                    <strong>App Store</strong>
-                  </span>
-                </a>
-                <a href={app.googlePlayHref} target="_blank" rel="noopener noreferrer">
-                  <FaGooglePlay aria-hidden="true" />
-                  <span>
-                    Get it on
-                    <strong>Google Play</strong>
-                  </span>
-                </a>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+    <div className="slider-controls">
+      <span className="slider-timing">Auto · 15 sec</span>
+      <div className="slider-dots" aria-label={label}>
+        {Array.from({ length: count }, (_, index) => (
+          <button
+            key={index}
+            type="button"
+            className={index === current ? 'is-active' : ''}
+            aria-label={`Show slide ${index + 1} of ${count}`}
+            aria-current={index === current ? 'true' : undefined}
+            onClick={() => onSelect(index)}
+          />
+        ))}
       </div>
-    </section>
+      <span className="slider-count">
+        {String(current + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}
+      </span>
+    </div>
   )
 }
 
@@ -245,28 +296,46 @@ function Stats() {
 }
 
 function Services() {
+  const slides = chunkItems(services, 4)
+  const [currentSlide, setCurrentSlide] = useAutoSlide(slides.length)
+  const visibleServices = slides[currentSlide] ?? []
+
   return (
     <section id="services" className="section services" aria-labelledby="services-heading">
       <div className="container">
-        <Reveal className="section-heading">
+        <Reveal className="section-heading compact-heading">
           <span>Services</span>
           <div>
-            <h2 id="services-heading">Enterprise capabilities for modern organizations.</h2>
-            <p>End-to-end software, AI, and digital delivery from strategy to production.</p>
+            <h2 id="services-heading">Enterprise capabilities, without the wall of text.</h2>
+            <p>Four focused capabilities at a time. The next set appears automatically every 15 seconds.</p>
           </div>
         </Reveal>
-        <div className="services-grid">
-          {services.map((service, index) => {
+
+        <motion.div
+          key={currentSlide}
+          className="services-grid carousel-grid"
+          initial={{ opacity: 0, x: 28 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.45, ease }}
+        >
+          {visibleServices.map((service) => {
             const Icon = service.icon
             return (
-              <Reveal key={service.title} className="service-item" delay={(index % 4) * 0.04}>
+              <article key={service.title} className="service-item">
                 <Icon aria-hidden="true" />
                 <h3>{service.title}</h3>
                 <p>{service.description}</p>
-              </Reveal>
+              </article>
             )
           })}
-        </div>
+        </motion.div>
+
+        <SliderControls
+          current={currentSlide}
+          count={slides.length}
+          onSelect={setCurrentSlide}
+          label="Service slides"
+        />
       </div>
     </section>
   )
@@ -321,21 +390,39 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 function Products() {
+  const slides = chunkItems(products, 4)
+  const [currentSlide, setCurrentSlide] = useAutoSlide(slides.length)
+  const visibleProducts = slides[currentSlide] ?? []
+
   return (
     <section id="products" className="section products" aria-labelledby="products-heading">
       <div className="container">
-        <Reveal className="section-heading">
+        <Reveal className="section-heading compact-heading">
           <span>Products</span>
           <div>
             <h2 id="products-heading">Software products built for real users.</h2>
-            <p>Platforms spanning community, education, media, business, and AI.</p>
+            <p>Four products at a time, with the next set rotating automatically every 15 seconds.</p>
           </div>
         </Reveal>
-        <div className="projects-layout">
-          {products.map((project) => (
+
+        <motion.div
+          key={currentSlide}
+          className="products-slide-grid carousel-grid"
+          initial={{ opacity: 0, x: 28 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.45, ease }}
+        >
+          {visibleProducts.map((project) => (
             <ProjectCard key={project.title} project={project} />
           ))}
-        </div>
+        </motion.div>
+
+        <SliderControls
+          current={currentSlide}
+          count={slides.length}
+          onSelect={setCurrentSlide}
+          label="Product slides"
+        />
       </div>
     </section>
   )
@@ -682,7 +769,6 @@ export default function App() {
       <Header />
       <main>
         <Hero />
-        <FeaturedApps />
         <Stats />
         <Services />
         <Products />
