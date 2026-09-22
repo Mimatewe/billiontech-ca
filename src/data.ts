@@ -44,9 +44,11 @@ export const company = {
   director: 'Million Tewelde',
   directorTitle: 'Founder & Director',
   roles: ['Software Engineer', 'AI Engineer', 'Full Stack Developer'],
-  location: 'Calgary, Alberta, Canada',
+  location: '3016 5 Ave NE, Calgary, AB T2A 6K4, Canada',
   locationShort: 'Calgary, Alberta',
-  website: 'https://billiontech.ca',
+  streetAddress: '3016 5 Ave NE',
+  postalCode: 'T2A 6K4',
+  website: 'https://www.billiontech.ca',
   email: 'milimeasho@gmail.com',
   phone: '+1 368 886 8015',
   phoneTel: '+13688868015',
@@ -54,7 +56,7 @@ export const company = {
   linkedin: 'https://www.linkedin.com/in/milliontewelde',
   github: 'https://github.com/Mimatewe',
   mapEmbed:
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d315164.6908855435!2d-114.37138855!3d51.027495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537170039f843fd5%3A0x266d3bb1b652b63a!2sCalgary%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca',
+    'https://www.google.com/maps?q=3016%205%20Ave%20NE%2C%20Calgary%2C%20AB%20T2A%206K4&output=embed'
 } as const
 
 export type Project = {
@@ -261,11 +263,11 @@ export const reasons = [
 
 export const navLinks = [
   ['Home', '#home'],
-  ['Services', '#services'],
+  ['Services', '/services/'],
   ['Products', '#products'],
   ['Portfolio', '#portfolio'],
   ['Technologies', '#technologies'],
-  ['About', '#about'],
+  ['About', '/about/'],
   ['Contact', '#contact'],
 ] as const
 
