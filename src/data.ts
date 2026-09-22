@@ -66,6 +66,7 @@ export type Project = {
   action?: 'Live Demo' | 'Google Play' | 'Website' | 'Learn More'
   appStoreHref?: string
   googlePlayHref?: string
+  landingHref?: string
   githubHref?: string
 }
 
@@ -85,6 +86,7 @@ export const products: Project[] = [
       'Canadian citizenship test preparation app with practice quizzes and study tools designed to help learners prepare on iPhone, iPad, and Android.',
     category: 'Education · Citizenship',
     technologies: ['Android', 'iOS', 'React', 'Capacitor'],
+    landingHref: '/apps/canadian-citizenship-quiz/',
     appStoreHref: 'https://apps.apple.com/ca/app/canadian-citizenship-quiz-2026/id6807144436',
     googlePlayHref: 'https://play.google.com/store/apps/details?id=ca.billiontech.citizenship',
   },
@@ -94,8 +96,19 @@ export const products: Project[] = [
       'Alberta driver knowledge test preparation app with practice questions for Class 7 learner and Class 4 professional licence test preparation.',
     category: 'Education · Driving',
     technologies: ['Android', 'iOS', 'React', 'Capacitor'],
+    landingHref: '/apps/alberta-class-7-4/',
     appStoreHref: 'https://apps.apple.com/ca/app/alberta-class-7-4/id6805763053?l=fr-CA',
     googlePlayHref: 'https://play.google.com/store/apps/details?id=com.million.quizapp',
+  },
+  {
+    title: 'KAL-SCAN',
+    description:
+      'Receipt and accounting-document workflow for businesses and bookkeeping teams, with secure uploads, automated extraction, and accountant review.',
+    category: 'Business · Bookkeeping',
+    technologies: ['Next.js', 'TypeScript', 'Supabase', 'AI', 'Accounting'],
+    landingHref: '/apps/kal-scan/',
+    href: 'https://kal-scan.vercel.app/',
+    action: 'Live Demo',
   },
   {
     title: 'Kal Service',
@@ -229,7 +242,7 @@ export const technologies: TechItem[] = [
 ]
 
 export const stats = [
-  { value: 11, suffix: '+', label: 'Projects' },
+  { value: 12, suffix: '+', label: 'Projects' },
   { value: 5000, suffix: '+', label: 'Development Hours' },
   { value: 100, suffix: '%', label: 'Client Commitment' },
   { value: 24, suffix: '/7', label: 'Support' },
