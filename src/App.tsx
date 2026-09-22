@@ -159,10 +159,9 @@ function Hero() {
           transition={{ duration: 0.75, ease }}
         >
           <p className="hero-brand">{company.name}</p>
-          <h1 id="hero-heading">Building Modern Software That Solves Real Problems</h1>
+          <h1 id="hero-heading">Calgary Web, Mobile App & Custom Software Development</h1>
           <p className="hero-lead">
-            {company.name} designs AI-powered applications, enterprise software, mobile apps, cloud solutions, and
-            digital platforms for businesses, startups, and government organizations.
+            {company.name} builds websites, iOS and Android apps, AI-powered software, and custom business systems from Calgary, Alberta.
           </p>
           <div className="hero-actions">
             <a className="button primary" href="#products">
@@ -625,8 +624,8 @@ function Contact() {
               <dd>{company.name}</dd>
             </div>
             <div>
-              <dt>Location</dt>
-              <dd>{company.locationShort}</dd>
+              <dt>Address</dt>
+              <dd>{company.location}</dd>
             </div>
             <div>
               <dt>Website</dt>
@@ -671,7 +670,7 @@ function Contact() {
             <div>
               <FaMapMarkerAlt aria-hidden="true" />
               <span>
-                Location<small>{company.location}</small>
+                Address<small>{company.location}</small>
               </span>
             </div>
           </div>
@@ -720,7 +719,7 @@ function Contact() {
 
           <div className="map-wrap">
             <iframe
-              title={`Map of ${company.locationShort}`}
+              title={`Map of ${company.location}`}
               src={company.mapEmbed}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
