@@ -793,8 +793,15 @@ button:focus-visible {
   border-color: var(--blue);
 }
 .contact-form .button { width: fit-content; }
-.form-status { min-height: 20px; margin: 0; font-size: 13px; color: var(--muted); }
-.form-status a { color: var(--blue); text-decoration: underline; }
+.form-status {
+  min-height: 20px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.form-status.is-success { color: #166534; }
+.form-status.is-error { color: #b91c1c; }
 
 .map-wrap {
   border: 1px solid var(--line);
