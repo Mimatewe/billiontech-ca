@@ -582,28 +582,44 @@ function Process() {
 
 function Contact() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
+  const [formMessage, setFormMessage] = useState('')
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const form = event.currentTarget
+    const data = new FormData(form)
+
     setStatus('sending')
+    setFormMessage('')
+
     try {
-      const data = new FormData(form)
-      data.set('form-name', 'contact')
-      const body = new URLSearchParams()
-      data.forEach((value, key) => {
-        if (typeof value === 'string') body.append(key, value)
-      })
-      const response = await fetch('/', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body.toString(),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.get('name'),
+          email: data.get('email'),
+          message: data.get('message'),
+          website: data.get('website'),
+        }),
       })
-      if (!response.ok) throw new Error('Failed')
+
+      const result = await response.json().catch(() => null)
+
+      if (!response.ok) {
+        throw new Error(result?.error || 'We could not send your message right now. Please try again.')
+      }
+
       setStatus('sent')
+      setFormMessage('Thanks — your message was sent. We’ll reply to your email.')
       form.reset()
-    } catch {
+    } catch (error) {
       setStatus('error')
+      setFormMessage(
+        error instanceof Error
+          ? error.message
+          : 'We could not send your message right now. Please try again.',
+      )
     }
   }
 
@@ -677,43 +693,57 @@ function Contact() {
         </Reveal>
 
         <Reveal className="contact-aside">
-          <form
-            className="contact-form"
-            name="contact"
-            method="POST"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
-            onSubmit={onSubmit}
-            aria-label="Contact form"
-          >
-            <input type="hidden" name="form-name" value="contact" />
+          <form className="contact-form" onSubmit={onSubmit} aria-label="Contact form">
             <p className="sr-only">
               <label>
-                Don&apos;t fill this out if you&apos;re human: <input name="bot-field" tabIndex={-1} autoComplete="off" />
+                Leave this field empty:
+                <input name="website" type="text" tabIndex={-1} autoComplete="off" />
               </label>
             </p>
             <label>
               Name
-              <input name="name" type="text" required autoComplete="name" placeholder="Your name" />
+              <input
+                name="name"
+                type="text"
+                required
+                minLength={2}
+                maxLength={100}
+                autoComplete="name"
+                placeholder="Your name"
+              />
             </label>
             <label>
               Email
-              <input name="email" type="email" required autoComplete="email" placeholder="you@company.com" />
+              <input
+                name="email"
+                type="email"
+                required
+                maxLength={200}
+                autoComplete="email"
+                placeholder="you@company.com"
+              />
             </label>
             <label>
               Message
-              <textarea name="message" required rows={5} placeholder="Tell us about your project" />
+              <textarea
+                name="message"
+                required
+                minLength={10}
+                maxLength={5000}
+                rows={5}
+                placeholder="Tell us about your project"
+              />
             </label>
             <button className="button primary" type="submit" disabled={status === 'sending'}>
-              {status === 'sending' ? 'Sending…' : 'Send Message'} <FaArrowRight aria-hidden="true" />
+              {status === 'sending' ? 'Sending…' : status === 'sent' ? 'Message Sent ✓' : 'Send Message'}{' '}
+              {status !== 'sent' && <FaArrowRight aria-hidden="true" />}
             </button>
-            <p className="form-status" role="status" aria-live="polite">
-              {status === 'sent' && 'Thanks — your message was sent.'}
-              {status === 'error' && (
-                <>
-                  Something went wrong. Email us at <a href={`mailto:${company.email}`}>{company.email}</a>.
-                </>
-              )}
+            <p
+              className={`form-status ${status === 'sent' ? 'is-success' : status === 'error' ? 'is-error' : ''}`}
+              role="status"
+              aria-live="polite"
+            >
+              {formMessage}
             </p>
           </form>
 
