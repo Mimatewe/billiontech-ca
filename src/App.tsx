@@ -346,6 +346,7 @@ function ProjectCard({ project }: { project: Project }) {
   const hasActions =
     Boolean(project.appStoreHref) ||
     Boolean(project.googlePlayHref) ||
+    Boolean(project.landingHref) ||
     Boolean(project.href && project.action) ||
     Boolean(project.githubHref)
 
@@ -362,6 +363,11 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
         {hasActions ? (
           <div className="project-actions">
+            {project.landingHref && (
+              <a href={project.landingHref}>
+                Details <FaArrowRight aria-hidden="true" />
+              </a>
+            )}
             {project.appStoreHref && (
               <a className="store-link" href={project.appStoreHref} target="_blank" rel="noopener noreferrer">
                 App Store <FaApple aria-hidden="true" />
