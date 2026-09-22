@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://billiontech.ca/sitemap.xml
+Sitemap: https://www.billiontech.ca/sitemap.xml
