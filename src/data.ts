@@ -263,11 +263,10 @@ export const reasons = [
 
 export const navLinks = [
   ['Home', '#home'],
-  ['Services', '/services/'],
+  ['Services', '#services'],
   ['Products', '#products'],
-  ['Portfolio', '#portfolio'],
   ['Technologies', '#technologies'],
-  ['About', '/about/'],
+  ['About', '#about'],
   ['Contact', '#contact'],
 ] as const
 

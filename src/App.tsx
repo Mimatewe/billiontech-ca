@@ -1,13 +1,15 @@
 import { animate, motion, useInView, useReducedMotion } from 'framer-motion'
-import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type Dispatch, type FormEvent, type ReactNode, type SetStateAction } from 'react'
 import {
   FaApple,
   FaArrowRight,
   FaCheck,
+  FaCar,
   FaEnvelope,
   FaExternalLinkAlt,
   FaGithub,
   FaGooglePlay,
+  FaGraduationCap,
   FaLinkedin,
   FaMapMarkerAlt,
   FaPhoneAlt,
@@ -18,7 +20,6 @@ import { HiMenuAlt3 } from 'react-icons/hi'
 import {
   company,
   navLinks,
-  portfolioExtras,
   process,
   products,
   reasons,
@@ -144,6 +145,63 @@ function FloatingShapes() {
   )
 }
 
+type ShowcaseApp = {
+  title: string
+  category: string
+  accent: 'blue' | 'violet' | 'amber'
+  icon: typeof FaCar
+  caption: string
+}
+
+const showcaseApps: ShowcaseApp[] = [
+  {
+    title: 'Alberta Class 7 & 4',
+    category: 'Driver preparation',
+    accent: 'blue',
+    icon: FaCar,
+    caption: 'Practice with confidence',
+  },
+  {
+    title: 'Canadian Citizenship Quiz 2026',
+    category: 'Citizenship preparation',
+    accent: 'violet',
+    icon: FaGraduationCap,
+    caption: 'Learn Canada, one quiz at a time',
+  },
+  {
+    title: 'KAL-SCAN',
+    category: 'Document intelligence',
+    accent: 'amber',
+    icon: FaCheck,
+    caption: 'Capture. Extract. Review.',
+  },
+]
+
+function PhoneMockup({ app, className = '' }: { app: ShowcaseApp; className?: string }) {
+  const Icon = app.icon
+  return (
+    <div className={`phone-mockup phone-${app.accent} ${className}`} aria-hidden="true">
+      <div className="phone-frame">
+        <div className="phone-island" />
+        <div className="phone-screen">
+          <div className="phone-status"><span>9:41</span><span>● ◒</span></div>
+          <div className="phone-app-icon"><Icon /></div>
+          <p className="phone-app-category">{app.category}</p>
+          <h3>{app.title}</h3>
+          <div className="phone-progress"><span /><span /><span /></div>
+          <div className="phone-lesson-card">
+            <small>Today&apos;s progress</small>
+            <strong>{app.caption}</strong>
+            <div><i /><i /><i /><i /><i /></div>
+          </div>
+          <div className="phone-bottom-nav"><span>⌂</span><span>◉</span><span>☻</span></div>
+        </div>
+        <div className="phone-reflection" />
+      </div>
+    </div>
+  )
+}
+
 function Hero() {
   const featuredApps = products.filter((project) => project.appStoreHref && project.googlePlayHref)
 
@@ -177,40 +235,38 @@ function Hero() {
         </motion.div>
 
         <motion.aside
-          className="hero-app-panel"
-          aria-label="Download Billion Tech apps"
+          className="hero-devices"
+          aria-label="Billion Tech app previews"
           initial={{ opacity: 0, x: 28 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.75, ease, delay: 0.12 }}
         >
-          <div className="hero-app-panel-heading">
-            <span>Available now</span>
-            <h2>Study smarter. Download today.</h2>
+          <div className="devices-orbit" />
+          <motion.div className="device device-back" animate={{ y: [0, -12, 0], rotate: [-7, -5, -7] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}>
+            <PhoneMockup app={showcaseApps[2]} />
+          </motion.div>
+          <motion.div className="device device-left" animate={{ y: [0, 10, 0], rotate: [-10, -8, -10] }} transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}>
+            <PhoneMockup app={showcaseApps[0]} />
+          </motion.div>
+          <motion.div className="device device-front" animate={{ y: [0, -13, 0], rotate: [7, 9, 7] }} transition={{ duration: 7.5, repeat: Infinity, ease: 'easeInOut', delay: 0.7 }}>
+            <PhoneMockup app={showcaseApps[1]} />
+          </motion.div>
+          <div className="devices-caption">
+            <span>Featured mobile products</span>
+            <strong>Designed for the moments that matter.</strong>
           </div>
-
-          <div className="hero-app-list">
-            {featuredApps.map((app) => (
-              <article className="hero-app-card" key={app.title}>
-                <div>
-                  <span className="hero-app-category">{app.category}</span>
-                  <h3>{app.title}</h3>
-                </div>
-                <div className="hero-store-buttons" aria-label={`Download ${app.title}`}>
-                  <a href={app.appStoreHref} target="_blank" rel="noopener noreferrer">
-                    <FaApple aria-hidden="true" />
-                    <span>App Store</span>
-                  </a>
-                  <a href={app.googlePlayHref} target="_blank" rel="noopener noreferrer">
-                    <FaGooglePlay aria-hidden="true" />
-                    <span>Google Play</span>
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <p className="hero-app-note">Free to download · iPhone, iPad & Android</p>
         </motion.aside>
+      </div>
+      <div className="container hero-app-bar" aria-label="Download featured Billion Tech apps">
+        {featuredApps.map((app) => (
+          <article key={app.title}>
+            <span>{app.category}</span><strong>{app.title}</strong>
+            <div>
+              <a className="app-store-button" href={app.appStoreHref} target="_blank" rel="noopener noreferrer" aria-label={`Download ${app.title} on the App Store`}><FaApple /></a>
+              <a className="google-play-button" href={app.googlePlayHref} target="_blank" rel="noopener noreferrer" aria-label={`Download ${app.title} on Google Play`}><FaGooglePlay /></a>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   )
@@ -237,10 +293,6 @@ function useAutoSlide(total: number, delay = 2000) {
     return () => window.clearInterval(interval)
   }, [delay, total])
 
-  useEffect(() => {
-    if (current >= total && total > 0) setCurrent(0)
-  }, [current, total])
-
   return [current, setCurrent] as const
 }
 
@@ -252,7 +304,7 @@ function SliderControls({
 }: {
   current: number
   count: number
-  onSelect: (index: number) => void
+  onSelect: Dispatch<SetStateAction<number>>
   label: string
 }) {
   if (count <= 1) return null
@@ -294,6 +346,54 @@ function Stats() {
   )
 }
 
+function getServiceVisual(title: string) {
+  if (title.includes('AI') || title.includes('Prompt')) return title.includes('Prompt') ? 'prompt' : 'ai'
+  if (title.includes('Database')) return 'data'
+  if (title.includes('Android')) return 'android'
+  if (title.includes('iOS')) return 'ios'
+  if (title.includes('Mobile')) return 'mobile'
+  if (title.includes('Node.js')) return 'node'
+  if (title.includes('React')) return 'react'
+  if (title.includes('Government')) return 'government'
+  if (title.includes('Maintenance')) return 'maintenance'
+  if (title.includes('Custom Software')) return 'software'
+  if (title.includes('Automation')) return 'automation'
+  if (title.includes('Digital Transformation')) return 'transformation'
+  if (title.includes('Technical Consulting')) return 'consulting'
+  if (title.includes('UI/UX')) return 'ux'
+  if (title.includes('Cloud') || title.includes('Deployment')) return 'cloud'
+  if (title.includes('Web') || title.includes('React') || title.includes('Next.js')) return 'web'
+  return 'systems'
+}
+
+function ServiceVisual({ title }: { title: string }) {
+  const kind = getServiceVisual(title)
+
+  return (
+    <div className={`service-visual visual-${kind}`} aria-hidden="true">
+      {kind === 'ai' && <><span className="ai-orbit orbit-one" /><span className="ai-orbit orbit-two" /><span className="ai-core">AI</span><i className="ai-spark spark-one" /><i className="ai-spark spark-two" /></>}
+      {kind === 'prompt' && <div className="prompt-panel"><span>› Build a better flow</span><i /><i /><i /></div>}
+      {kind === 'data' && <div className="data-stack"><i /><i /><i /><span>DATA</span></div>}
+      {kind === 'mobile' && <div className="mini-phone"><span /><i /><b /></div>}
+      {kind === 'android' && <div className="platform-phone android-phone"><span /><i><b /><b /></i><em /></div>}
+      {kind === 'ios' && <div className="platform-phone ios-phone"><span /><i>iOS</i><em /></div>}
+      {kind === 'node' && <div className="node-api"><i>API</i><span /><span /><span /><b /><b /><b /></div>}
+      {kind === 'react' && <div className="react-atom"><i /><span /><span /><span /></div>}
+      {kind === 'government' && <div className="gov-building"><i /><b /><b /><b /><b /><span /></div>}
+      {kind === 'maintenance' && <div className="maintenance-loop"><span>↻</span><i /><i /><i /></div>}
+      {kind === 'software' && <div className="software-modules"><i>&lt;/&gt;</i><span /><span /><span /><b /><b /></div>}
+      {kind === 'automation' && <div className="automation-flow"><i>●</i><span /><span /><span /><b>↗</b></div>}
+      {kind === 'transformation' && <div className="transformation-steps"><i /><i /><i /><b>↗</b></div>}
+      {kind === 'consulting' && <div className="consulting-map"><i>✦</i><span /><span /><span /><b /></div>}
+      {kind === 'ux' && <div className="ux-canvas"><i /><i /><b /><b /><span /></div>}
+      {kind === 'cloud' && <div className="cloud-network"><span>☁</span><i /><i /><i /></div>}
+      {kind === 'web' && <div className="web-window"><span /><span /><span /><i /></div>}
+      {kind === 'systems' && <div className="system-grid"><i /><i /><i /><i /><b /></div>}
+      <strong className="service-visual-title">{title}</strong>
+    </div>
+  )
+}
+
 function Services() {
   const slides = chunkItems(services, 4)
   const [currentSlide, setCurrentSlide] = useAutoSlide(slides.length)
@@ -318,13 +418,16 @@ function Services() {
           transition={{ duration: 0.45, ease }}
         >
           {visibleServices.map((service) => {
-            const Icon = service.icon
             return (
-              <article key={service.title} className="service-item">
-                <Icon aria-hidden="true" />
-                <h3>{service.title}</h3>
+              <motion.article
+                key={service.title}
+                className="service-item"
+                whileHover={{ y: -7, rotateX: 2, rotateY: -2 }}
+                transition={{ duration: 0.25 }}
+              >
+                <ServiceVisual title={service.title} />
                 <p>{service.description}</p>
-              </article>
+              </motion.article>
             )
           })}
         </motion.div>
@@ -340,6 +443,30 @@ function Services() {
   )
 }
 
+function getProductBrand(title: string) {
+  const brands: Record<string, { mark: string; theme: string }> = {
+    Biet: { mark: 'B', theme: 'biet' },
+    'Canadian Citizenship Quiz 2026': { mark: 'CA', theme: 'citizenship' },
+    'Alberta Class 7 & 4': { mark: '7·4', theme: 'alberta' },
+    'KAL-SCAN': { mark: 'K', theme: 'kal' },
+    'Kal Service': { mark: 'KS', theme: 'service' },
+    'Cheers Pictures': { mark: '◉', theme: 'cheers' },
+    'Tigrinya Kids Learning': { mark: 'ት', theme: 'tigrinya' },
+    'School Management Platform': { mark: 'S', theme: 'school' },
+    'AI Projects': { mark: 'AI', theme: 'ai' },
+    'Evangadi Forum': { mark: 'E', theme: 'evangadi' },
+    MovieFlix: { mark: 'M', theme: 'movie' },
+    'ChatGPT Clone': { mark: '✦', theme: 'chat' },
+  }
+
+  return brands[title] ?? { mark: title.slice(0, 2).toUpperCase(), theme: 'default' }
+}
+
+function ProductMark({ title }: { title: string }) {
+  const { mark, theme } = getProductBrand(title)
+  return <div className={`product-mark product-mark-${theme}`} aria-hidden="true"><span>{mark}</span></div>
+}
+
 function ProjectCard({ project }: { project: Project }) {
   const ActionIcon = project.action === 'Google Play' ? FaGooglePlay : FaExternalLinkAlt
   const hasActions =
@@ -352,6 +479,7 @@ function ProjectCard({ project }: { project: Project }) {
   return (
     <Reveal className="project-card">
       <article className="project-content">
+        <ProductMark title={project.title} />
         <span className="project-category">{project.category}</span>
         <h3>{project.title}</h3>
         <p>{project.description}</p>
@@ -395,10 +523,6 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 function Products() {
-  const slides = chunkItems(products, 4)
-  const [currentSlide, setCurrentSlide] = useAutoSlide(slides.length)
-  const visibleProducts = slides[currentSlide] ?? []
-
   return (
     <section id="products" className="section products" aria-labelledby="products-heading">
       <div className="container">
@@ -406,49 +530,15 @@ function Products() {
           <span>Products</span>
           <div>
             <h2 id="products-heading">Software products built for real users.</h2>
-            <p>Four products at a time, with the next set rotating automatically every 2 seconds.</p>
+            <p>Explore the Billion Tech product line — every project is designed around a distinct real-world need.</p>
           </div>
         </Reveal>
-
-        <motion.div
-          key={currentSlide}
-          className="products-slide-grid carousel-grid"
-          initial={{ opacity: 0, x: 28 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.45, ease }}
-        >
-          {visibleProducts.map((project) => (
-            <ProjectCard key={project.title} project={project} />
-          ))}
-        </motion.div>
-
-        <SliderControls
-          current={currentSlide}
-          count={slides.length}
-          onSelect={setCurrentSlide}
-          label="Product slides"
-        />
-      </div>
-    </section>
-  )
-}
-
-function Portfolio() {
-  return (
-    <section id="portfolio" className="section portfolio" aria-labelledby="portfolio-heading">
-      <div className="container">
-        <Reveal className="section-heading">
-          <span>Portfolio</span>
-          <div>
-            <h2 id="portfolio-heading">Additional selected work.</h2>
-            <p>More shipped applications across web, mobile, and AI.</p>
+        <div className="products-marquee" aria-label="Billion Tech product gallery">
+          <div className="products-marquee-track">
+            {products.map((project) => <ProjectCard key={project.title} project={project} />)}
           </div>
-        </Reveal>
-        <div className="projects-layout">
-          {portfolioExtras.map((project) => (
-            <ProjectCard key={project.title} project={project} />
-          ))}
         </div>
+        <p className="products-marquee-note">The gallery moves automatically · Hover or focus a project to pause</p>
       </div>
     </section>
   )
@@ -807,7 +897,6 @@ export default function App() {
         <Stats />
         <Services />
         <Products />
-        <Portfolio />
         <Technologies />
         <WhyUs />
         <About />
