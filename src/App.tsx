@@ -876,7 +876,7 @@ function Footer() {
         <div className="footer-copy">
           <p>Copyright © 2026 {company.name}</p>
           <p>All Rights Reserved.</p>
-          <p><strong>Privacy Policies</strong></p>
+          <p><strong><a href="/privacy/">Privacy Policies</a></strong></p>
           <a href="/apps/alberta-class-7-4/privacy/">Alberta Class 7 &amp; 4</a>
           <a href="/apps/canadian-citizenship-quiz/privacy/">Canadian Citizenship Quiz 2026</a>
           <a href="/momcare/privacy/">Mama Kids Control</a>
