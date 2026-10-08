@@ -49,7 +49,7 @@ export const company = {
   streetAddress: '3016 5 Ave NE',
   postalCode: 'T2A 6K4',
   website: 'https://www.billiontech.ca',
-  email: 'milimeasho@gmail.com',
+  email: 'info@billiontech.ca',
   phone: '+1 368 886 8015',
   phoneTel: '+13688868015',
   whatsapp: 'https://wa.me/13688868015',
