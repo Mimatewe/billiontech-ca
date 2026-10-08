@@ -261,6 +261,21 @@ function PhoneMockup({ app, className = '' }: { app: ShowcaseApp; className?: st
 
 function Hero() {
   const featuredApps = products.filter((project) => project.googlePlayHref)
+  const [storeChoiceApp, setStoreChoiceApp] = useState<Project | null>(null)
+
+  const openFeaturedApp = (app: Project) => {
+    if (app.appStoreHref && app.googlePlayHref) {
+      setStoreChoiceApp(app)
+      return
+    }
+
+    const href = app.googlePlayHref ?? app.appStoreHref
+    if (!href) return
+
+    const store = app.googlePlayHref ? 'google_play' : 'apple_app_store'
+    trackAppStoreClick(app.title, store, href)
+    window.open(href, '_blank', 'noopener,noreferrer')
+  }
 
   return (
     <section id="home" className="hero section" aria-labelledby="hero-heading">
@@ -316,7 +331,24 @@ function Hero() {
       </div>
       <div className="container hero-app-bar" aria-label="Download featured Billion Tech apps">
         {featuredApps.map((app) => (
-          <article key={app.title}>
+          <article
+            key={app.title}
+            className="hero-app-row"
+            role="button"
+            tabIndex={0}
+            aria-label={
+              app.appStoreHref && app.googlePlayHref
+                ? `Choose a store for ${app.title}`
+                : `Open ${app.title} in Google Play`
+            }
+            onClick={() => openFeaturedApp(app)}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault()
+                openFeaturedApp(app)
+              }
+            }}
+          >
             {app.imageSrc && (
               <img className="hero-app-icon" src={app.imageSrc} alt={`${app.title} app icon`} />
             )}
@@ -324,7 +356,7 @@ function Hero() {
               <span>{app.category}</span>
               <strong>{app.title}</strong>
             </div>
-            <div className="hero-app-actions">
+            <div className="hero-app-actions" onClick={(event) => event.stopPropagation()}>
               {app.appStoreHref && (
                 <a className="app-store-button" href={app.appStoreHref} onClick={() => trackAppStoreClick(app.title, 'apple_app_store', app.appStoreHref!)} target="_blank" rel="noopener noreferrer" aria-label={`Download ${app.title} on the App Store`}><FaApple /></a>
               )}
@@ -335,6 +367,59 @@ function Hero() {
           </article>
         ))}
       </div>
+
+      {storeChoiceApp && (
+        <div className="store-choice-backdrop" role="presentation" onClick={() => setStoreChoiceApp(null)}>
+          <div
+            className="store-choice-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="store-choice-title"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              className="store-choice-close"
+              type="button"
+              aria-label="Close store selection"
+              onClick={() => setStoreChoiceApp(null)}
+            >
+              <FaTimes aria-hidden="true" />
+            </button>
+            <p>Choose your store</p>
+            <h2 id="store-choice-title">{storeChoiceApp.title}</h2>
+            <div className="store-choice-actions">
+              {storeChoiceApp.appStoreHref && (
+                <a
+                  href={storeChoiceApp.appStoreHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    trackAppStoreClick(storeChoiceApp.title, 'apple_app_store', storeChoiceApp.appStoreHref!)
+                    setStoreChoiceApp(null)
+                  }}
+                >
+                  <FaApple aria-hidden="true" />
+                  App Store
+                </a>
+              )}
+              {storeChoiceApp.googlePlayHref && (
+                <a
+                  href={storeChoiceApp.googlePlayHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    trackAppStoreClick(storeChoiceApp.title, 'google_play', storeChoiceApp.googlePlayHref!)
+                    setStoreChoiceApp(null)
+                  }}
+                >
+                  <FaGooglePlay aria-hidden="true" />
+                  Google Play
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
