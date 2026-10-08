@@ -80,6 +80,11 @@
       "source": "/x",
       "destination": "/?utm_source=x&utm_medium=social&utm_campaign=billiontech_profile",
       "permanent": false
+    },
+    {
+      "source": "/pinterest",
+      "destination": "/?utm_source=pinterest&utm_medium=social&utm_campaign=billiontech_profile",
+      "permanent": false
     }
   ]
 }
