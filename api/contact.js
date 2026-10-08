@@ -49,7 +49,7 @@ export default async function handler(req, res) {
   }
 
   const apiKey = process.env.RESEND_API_KEY
-  const toEmail = process.env.CONTACT_TO_EMAIL || 'milimeasho@gmail.com'
+  const toEmail = process.env.CONTACT_TO_EMAIL || 'info@billiontech.ca'
   const fromEmail =
     process.env.CONTACT_FROM_EMAIL || 'Billion Tech Website <onboarding@resend.dev>'
 
