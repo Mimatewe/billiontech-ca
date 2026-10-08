@@ -121,6 +121,49 @@ function Header() {
   )
 }
 
+function StorefrontBar() {
+  return (
+    <section className="storefront-bar" aria-label="Billion Tech official app stores">
+      <div className="container storefront-inner">
+        <div className="storefront-copy">
+          <span>All Billion Tech apps</span>
+          <strong>Explore our official app stores</strong>
+        </div>
+        <div className="storefront-actions">
+          <a
+            className="storefront-link storefront-google"
+            href="https://play.google.com/store/apps/dev?id=8304430835613308449"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View BillionTech apps on Google Play"
+          >
+            <FaGooglePlay aria-hidden="true" />
+            <span>
+              Google Play
+              <small>BillionTech</small>
+            </span>
+            <FaExternalLinkAlt className="storefront-external" aria-hidden="true" />
+          </a>
+          <a
+            className="storefront-link storefront-apple"
+            href="https://apps.apple.com/ca/developer/billion-tech-inc/id6805763055"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View Billion Tech Inc. apps on the App Store"
+          >
+            <FaApple aria-hidden="true" />
+            <span>
+              App Store
+              <small>Billion Tech Inc.</small>
+            </span>
+            <FaExternalLinkAlt className="storefront-external" aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function FloatingShapes() {
   const reduced = useReducedMotion()
   if (reduced) return null
@@ -917,6 +960,7 @@ export default function App() {
     <>
       <Header />
       <main>
+        <StorefrontBar />
         <Hero />
         <Stats />
         <Services />
