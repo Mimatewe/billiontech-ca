@@ -70,6 +70,7 @@ export type Project = {
   googlePlayHref?: string
   landingHref?: string
   githubHref?: string
+  imageSrc?: string
 }
 
 export const products: Project[] = [
@@ -81,6 +82,15 @@ export const products: Project[] = [
     technologies: ['Next.js', 'Prisma', 'PostgreSQL', 'Cloudflare', 'Vercel', 'Capacitor', 'Android', 'iOS'],
     href: 'https://bietapp.com/',
     action: 'Website',
+  },
+  {
+    title: 'Mama Kids Control',
+    description:
+      'Android parental-control app that helps parents block YouTube Shorts, selected words, searches, channels, downloads, and restricted links while keeping allowed videos available.',
+    category: 'Family · Parental Control',
+    technologies: ['Android', 'Parental Controls', 'Accessibility', 'Google Play Billing'],
+    googlePlayHref: 'https://play.google.com/store/apps/details?id=ca.billiontech.momcare',
+    imageSrc: 'https://play-lh.googleusercontent.com/-X2BDtBBsU20gtp5eYfRKYBq3EVDXE3BfzgKI1QCbD7fdyZCFsC1Wea4NneHyV8WYhmtEM5qF8IiJ5V7Ku8qHg%3Dw240-h480',
   },
   {
     title: 'Canadian Citizenship Quiz 2026',
