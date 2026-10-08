@@ -1145,3 +1145,14 @@ footer {
   .slider-controls { grid-template-columns: 1fr auto; }
   .slider-dots { justify-content: flex-start; }
 }
+
+
+.project-app-icon {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 16px;
+  border-radius: 18px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, .16);
+}
