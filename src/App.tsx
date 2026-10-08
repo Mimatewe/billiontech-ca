@@ -203,7 +203,7 @@ function PhoneMockup({ app, className = '' }: { app: ShowcaseApp; className?: st
 }
 
 function Hero() {
-  const featuredApps = products.filter((project) => project.appStoreHref && project.googlePlayHref)
+  const featuredApps = products.filter((project) => project.googlePlayHref)
 
   return (
     <section id="home" className="hero section" aria-labelledby="hero-heading">
@@ -260,10 +260,20 @@ function Hero() {
       <div className="container hero-app-bar" aria-label="Download featured Billion Tech apps">
         {featuredApps.map((app) => (
           <article key={app.title}>
-            <span>{app.category}</span><strong>{app.title}</strong>
-            <div>
-              <a className="app-store-button" href={app.appStoreHref} target="_blank" rel="noopener noreferrer" aria-label={`Download ${app.title} on the App Store`}><FaApple /></a>
-              <a className="google-play-button" href={app.googlePlayHref} target="_blank" rel="noopener noreferrer" aria-label={`Download ${app.title} on Google Play`}><FaGooglePlay /></a>
+            {app.imageSrc && (
+              <img className="hero-app-icon" src={app.imageSrc} alt={`${app.title} app icon`} />
+            )}
+            <div className="hero-app-copy">
+              <span>{app.category}</span>
+              <strong>{app.title}</strong>
+            </div>
+            <div className="hero-app-actions">
+              {app.appStoreHref && (
+                <a className="app-store-button" href={app.appStoreHref} target="_blank" rel="noopener noreferrer" aria-label={`Download ${app.title} on the App Store`}><FaApple /></a>
+              )}
+              {app.googlePlayHref && (
+                <a className="google-play-button" href={app.googlePlayHref} target="_blank" rel="noopener noreferrer" aria-label={`Download ${app.title} on Google Play`}><FaGooglePlay /></a>
+              )}
             </div>
           </article>
         ))}
