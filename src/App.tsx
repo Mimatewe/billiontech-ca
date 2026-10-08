@@ -447,6 +447,7 @@ function getProductBrand(title: string) {
   const brands: Record<string, { mark: string; theme: string }> = {
     Biet: { mark: 'B', theme: 'biet' },
     'Canadian Citizenship Quiz 2026': { mark: 'CA', theme: 'citizenship' },
+    'Mama Kids Control': { mark: 'MK', theme: 'mama' },
     'Alberta Class 7 & 4': { mark: '7·4', theme: 'alberta' },
     'KAL-SCAN': { mark: 'K', theme: 'kal' },
     'Kal Service': { mark: 'KS', theme: 'service' },
@@ -479,7 +480,16 @@ function ProjectCard({ project }: { project: Project }) {
   return (
     <Reveal className="project-card">
       <article className="project-content">
-        <ProductMark title={project.title} />
+        {project.imageSrc ? (
+          <img
+            className="project-app-icon"
+            src={project.imageSrc}
+            alt={`${project.title} app icon`}
+            loading="lazy"
+          />
+        ) : (
+          <ProductMark title={project.title} />
+        )}
         <span className="project-category">{project.category}</span>
         <h3>{project.title}</h3>
         <p>{project.description}</p>
