@@ -101,6 +101,7 @@ export const products: Project[] = [
     landingHref: '/apps/canadian-citizenship-quiz/',
     appStoreHref: 'https://apps.apple.com/ca/app/canadian-citizenship-quiz-2026/id6807144436',
     googlePlayHref: 'https://play.google.com/store/apps/details?id=ca.billiontech.citizenship',
+    imageSrc: 'https://play-lh.googleusercontent.com/_Y9MMAjw89dScNobMGNF1gvtwD2i4mtfFltC9j-cUw92m-kENPHd1I-J7k6OAMPwiWbrleFXwJ10qaEZQjQu0g%3Dw240-h480',
   },
   {
     title: 'Alberta Class 7 & 4',
@@ -111,6 +112,7 @@ export const products: Project[] = [
     landingHref: '/apps/alberta-class-7-4/',
     appStoreHref: 'https://apps.apple.com/ca/app/alberta-class-7-4/id6805763053?l=fr-CA',
     googlePlayHref: 'https://play.google.com/store/apps/details?id=com.million.quizapp',
+    imageSrc: 'https://play-lh.googleusercontent.com/Ms3tzYxLPNMLOqC6aJ0PizPHyJ1TaZIS0CSkUVqGwp-W1EYN8Bjxrqh-qvXSZYJOjYiBNPQBcY0SewALJ0gM%3Dw240-h480',
   },
   {
     title: 'KAL-SCAN',
