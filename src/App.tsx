@@ -31,6 +31,18 @@ import {
 
 const ease = [0.22, 1, 0.36, 1] as const
 
+type GtagWindow = Window & {
+  gtag?: (...args: unknown[]) => void
+}
+
+function trackAppStoreClick(appName: string, store: 'google_play' | 'apple_app_store', linkUrl: string) {
+  ;(window as GtagWindow).gtag?.('event', 'app_store_click', {
+    app_name: appName,
+    store,
+    link_url: linkUrl,
+  })
+}
+
 function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const reduced = useReducedMotion()
   return (
@@ -133,6 +145,7 @@ function StorefrontBar() {
           <a
             className="storefront-link storefront-google"
             href="https://play.google.com/store/apps/dev?id=8304430835613308449"
+            onClick={() => trackAppStoreClick('BillionTech Apps', 'google_play', 'https://play.google.com/store/apps/dev?id=8304430835613308449')}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="View BillionTech apps on Google Play"
@@ -147,6 +160,7 @@ function StorefrontBar() {
           <a
             className="storefront-link storefront-apple"
             href="https://apps.apple.com/ca/developer/billion-tech-inc/id6805763055"
+            onClick={() => trackAppStoreClick('BillionTech Apps', 'apple_app_store', 'https://apps.apple.com/ca/developer/billion-tech-inc/id6805763055')}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="View Billion Tech Inc. apps on the App Store"
@@ -312,10 +326,10 @@ function Hero() {
             </div>
             <div className="hero-app-actions">
               {app.appStoreHref && (
-                <a className="app-store-button" href={app.appStoreHref} target="_blank" rel="noopener noreferrer" aria-label={`Download ${app.title} on the App Store`}><FaApple /></a>
+                <a className="app-store-button" href={app.appStoreHref} onClick={() => trackAppStoreClick(app.title, 'apple_app_store', app.appStoreHref!)} target="_blank" rel="noopener noreferrer" aria-label={`Download ${app.title} on the App Store`}><FaApple /></a>
               )}
               {app.googlePlayHref && (
-                <a className="google-play-button" href={app.googlePlayHref} target="_blank" rel="noopener noreferrer" aria-label={`Download ${app.title} on Google Play`}><FaGooglePlay /></a>
+                <a className="google-play-button" href={app.googlePlayHref} onClick={() => trackAppStoreClick(app.title, 'google_play', app.googlePlayHref!)} target="_blank" rel="noopener noreferrer" aria-label={`Download ${app.title} on Google Play`}><FaGooglePlay /></a>
               )}
             </div>
           </article>
@@ -559,12 +573,12 @@ function ProjectCard({ project }: { project: Project }) {
               </a>
             )}
             {project.appStoreHref && (
-              <a className="store-link" href={project.appStoreHref} target="_blank" rel="noopener noreferrer">
+              <a className="store-link" href={project.appStoreHref} onClick={() => trackAppStoreClick(project.title, 'apple_app_store', project.appStoreHref!)} target="_blank" rel="noopener noreferrer">
                 App Store <FaApple aria-hidden="true" />
               </a>
             )}
             {project.googlePlayHref && (
-              <a className="store-link" href={project.googlePlayHref} target="_blank" rel="noopener noreferrer">
+              <a className="store-link" href={project.googlePlayHref} onClick={() => trackAppStoreClick(project.title, 'google_play', project.googlePlayHref!)} target="_blank" rel="noopener noreferrer">
                 Google Play <FaGooglePlay aria-hidden="true" />
               </a>
             )}
