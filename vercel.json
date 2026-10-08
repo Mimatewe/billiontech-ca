@@ -60,6 +60,11 @@
       "source": "/tiktok",
       "destination": "/?utm_source=tiktok&utm_medium=social&utm_campaign=billiontech_profile",
       "permanent": false
+    },
+    {
+      "source": "/instagram",
+      "destination": "/?utm_source=instagram&utm_medium=social&utm_campaign=billiontech_profile",
+      "permanent": false
     }
   ]
 }
