@@ -59,3 +59,13 @@ footer a { color: #334155; font-weight: 700; text-decoration: none; }
   .nav-links { display: none; }
   .hero { padding-top: 62px; }
 }
+
+.app-card-icon {
+  width: 88px;
+  height: 88px;
+  display: block;
+  object-fit: cover;
+  border-radius: 22px;
+  margin-bottom: 20px;
+  box-shadow: 0 12px 28px rgba(15,23,42,.14);
+}
