@@ -115,7 +115,7 @@ function Header() {
             </a>
           ))}
           <a className="nav-contact" href="#contact" onClick={() => setOpen(false)}>
-            Hire Us <FaArrowRight aria-hidden="true" />
+            Contact Us <FaArrowRight aria-hidden="true" />
           </a>
         </div>
         <button
@@ -289,16 +289,16 @@ function Hero() {
           transition={{ duration: 0.75, ease }}
         >
           <p className="hero-brand">{company.name}</p>
-          <h1 id="hero-heading">Calgary Web, Mobile App & Custom Software Development</h1>
+          <h1 id="hero-heading">Canadian Software Products for Families, Education & Businesses</h1>
           <p className="hero-lead">
-            {company.name} builds websites, iOS and Android apps, AI-powered software, and custom business systems from Calgary, Alberta.
+            {company.name} develops its own mobile apps and software platforms for families, learners, and businesses. Our product portfolio includes published educational apps, subscription-based parental controls, and AI-powered document workflows.
           </p>
           <div className="hero-actions">
             <a className="button primary" href="#products">
-              Explore Projects <FaArrowRight aria-hidden="true" />
+              Explore Our Products <FaArrowRight aria-hidden="true" />
             </a>
             <a className="button secondary" href="#contact">
-              Hire Us
+              Our Services
             </a>
             <a className="button ghost" href="#contact">
               Contact <FaEnvelope aria-hidden="true" />
