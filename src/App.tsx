@@ -692,7 +692,7 @@ function Products() {
           <span>Products</span>
           <div>
             <h2 id="products-heading">Software products built for real users.</h2>
-            <p>Explore the Billion Tech product line — every project is designed around a distinct real-world need.</p>
+            <p>Explore our own mobile and web software products. Our business model includes optional paid app subscriptions, digital products, and developing software platforms for businesses.</p>
           </div>
         </Reveal>
         <div className="products-marquee" aria-label="Billion Tech product gallery">
@@ -771,8 +771,7 @@ function About() {
           <span className="section-label">About</span>
           <h2 id="about-heading">About {company.name}</h2>
           <p className="about-lead">
-            We build thoughtful software that helps organizations move faster, serve people better, and unlock the
-            value of modern AI.
+            Billion Tech Inc. is a Calgary-based software product company developing and operating its own mobile apps and web platforms for families, education, and businesses.
           </p>
         </Reveal>
         <Reveal className="about-director">
@@ -791,8 +790,7 @@ function About() {
               {company.name} with a focus on clean architecture, practical AI, and products people actually use.
             </p>
             <p>
-              Based in Calgary, Alberta, the company partners with businesses, startups, and government organizations to
-              design, ship, and maintain modern digital platforms.
+              Our product business includes subscription-based parental controls and educational mobile apps, alongside AI document-processing and business software platforms. We also provide selected software development services to clients.
             </p>
           </div>
           <a className="inline-link" href="#products">
