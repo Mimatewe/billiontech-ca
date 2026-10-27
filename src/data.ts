@@ -40,7 +40,7 @@ import { TbBrandNextjs } from 'react-icons/tb'
 export const company = {
   name: 'BILLION TECH INC.',
   shortName: 'BILLION TECH',
-  tagline: 'Building the Future Through Technology.',
+  tagline: 'Building Software Products for Families, Education and Business.',
   director: 'Million Tewelde',
   directorTitle: 'Founder & Director',
   roles: ['Software Engineer', 'AI Engineer', 'Full Stack Developer'],
@@ -77,7 +77,7 @@ export const products: Project[] = [
   {
     title: 'Biet',
     description:
-      'Community rental platform helping people find houses and apartments with a modern full-stack experience across web and mobile.',
+      'Rental marketplace software product connecting people with houses and apartments through a web and mobile platform.',
     category: 'Community Platform',
     technologies: ['Next.js', 'Prisma', 'PostgreSQL', 'Cloudflare', 'Vercel', 'Capacitor', 'Android', 'iOS'],
     href: 'https://bietapp.com/',
@@ -86,7 +86,7 @@ export const products: Project[] = [
   {
     title: 'Mama Kids Control',
     description:
-      'Android parental-control app that helps parents block YouTube Shorts, selected words, searches, channels, downloads, and restricted links while keeping allowed videos available.',
+      'BillionTech-developed Android parental-control product for families, offered with optional paid subscriptions. Parents can manage YouTube Shorts, selected words, searches, channels, downloads, and restricted links.',
     category: 'Family · Parental Control',
     technologies: ['Android', 'Parental Controls', 'Accessibility', 'Google Play Billing'],
     googlePlayHref: 'https://play.google.com/store/apps/details?id=ca.billiontech.momcare',
@@ -95,7 +95,7 @@ export const products: Project[] = [
   {
     title: 'Canadian Citizenship Quiz 2026',
     description:
-      'Canadian citizenship test preparation app with practice quizzes and study tools designed to help learners prepare on iPhone, iPad, and Android.',
+      'BillionTech educational software product for Canadian citizenship test preparation, with practice quizzes and study tools on iPhone, iPad, and Android.',
     category: 'Education · Citizenship',
     technologies: ['Android', 'iOS', 'React', 'Capacitor'],
     landingHref: '/apps/canadian-citizenship-quiz/',
@@ -106,7 +106,7 @@ export const products: Project[] = [
   {
     title: 'Alberta Class 7 & 4',
     description:
-      'Alberta driver knowledge test preparation app with practice questions for Class 7 learner and Class 4 professional licence test preparation.',
+      'BillionTech educational mobile app for Alberta Class 7 learner and Class 4 professional driver knowledge test preparation.',
     category: 'Education · Driving',
     technologies: ['Android', 'iOS', 'React', 'Capacitor'],
     landingHref: '/apps/alberta-class-7-4/',
@@ -117,7 +117,7 @@ export const products: Project[] = [
   {
     title: 'KAL-SCAN',
     description:
-      'Receipt and accounting-document workflow for businesses and bookkeeping teams, with secure uploads, automated extraction, and accountant review.',
+      'BillionTech-developed AI document-processing software for businesses and bookkeeping teams, with secure uploads, automated extraction, and accountant review. Built as a scalable software platform.',
     category: 'Business · Bookkeeping',
     technologies: ['Next.js', 'TypeScript', 'Supabase', 'AI', 'Accounting'],
     landingHref: '/apps/kal-scan/',
