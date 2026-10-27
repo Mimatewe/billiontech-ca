@@ -115,7 +115,7 @@ function Header() {
             </a>
           ))}
           <a className="nav-contact" href="#contact" onClick={() => setOpen(false)}>
-            Hire Us <FaArrowRight aria-hidden="true" />
+            Contact Us <FaArrowRight aria-hidden="true" />
           </a>
         </div>
         <button
@@ -289,16 +289,16 @@ function Hero() {
           transition={{ duration: 0.75, ease }}
         >
           <p className="hero-brand">{company.name}</p>
-          <h1 id="hero-heading">Calgary Web, Mobile App & Custom Software Development</h1>
+          <h1 id="hero-heading">Canadian Software Products for Families, Education & Businesses</h1>
           <p className="hero-lead">
-            {company.name} builds websites, iOS and Android apps, AI-powered software, and custom business systems from Calgary, Alberta.
+            {company.name} develops its own mobile apps and software platforms for families, learners, and businesses. Our product portfolio includes published educational apps, subscription-based parental controls, and AI-powered document workflows.
           </p>
           <div className="hero-actions">
             <a className="button primary" href="#products">
-              Explore Projects <FaArrowRight aria-hidden="true" />
+              Explore Our Products <FaArrowRight aria-hidden="true" />
             </a>
             <a className="button secondary" href="#contact">
-              Hire Us
+              Our Services
             </a>
             <a className="button ghost" href="#contact">
               Contact <FaEnvelope aria-hidden="true" />
@@ -692,7 +692,7 @@ function Products() {
           <span>Products</span>
           <div>
             <h2 id="products-heading">Software products built for real users.</h2>
-            <p>Explore the Billion Tech product line — every project is designed around a distinct real-world need.</p>
+            <p>Explore our own mobile and web software products. Our business model includes optional paid app subscriptions, digital products, and developing software platforms for businesses.</p>
           </div>
         </Reveal>
         <div className="products-marquee" aria-label="Billion Tech product gallery">
@@ -771,8 +771,7 @@ function About() {
           <span className="section-label">About</span>
           <h2 id="about-heading">About {company.name}</h2>
           <p className="about-lead">
-            We build thoughtful software that helps organizations move faster, serve people better, and unlock the
-            value of modern AI.
+            Billion Tech Inc. is a Calgary-based software product company developing and operating its own mobile apps and web platforms for families, education, and businesses.
           </p>
         </Reveal>
         <Reveal className="about-director">
@@ -791,8 +790,7 @@ function About() {
               {company.name} with a focus on clean architecture, practical AI, and products people actually use.
             </p>
             <p>
-              Based in Calgary, Alberta, the company partners with businesses, startups, and government organizations to
-              design, ship, and maintain modern digital platforms.
+              Our product business includes subscription-based parental controls and educational mobile apps, alongside AI document-processing and business software platforms. We also provide selected software development services to clients.
             </p>
           </div>
           <a className="inline-link" href="#products">
