@@ -89,6 +89,7 @@ export const products: Project[] = [
       'BillionTech-developed Android parental-control product for families, offered with optional paid subscriptions. Parents can manage YouTube Shorts, selected words, searches, channels, downloads, and restricted links.',
     category: 'Family · Parental Control',
     technologies: ['Android', 'Parental Controls', 'Accessibility', 'Google Play Billing'],
+    landingHref: '/apps/mama-kids-control/',
     googlePlayHref: 'https://play.google.com/store/apps/details?id=ca.billiontech.momcare',
     imageSrc: 'https://play-lh.googleusercontent.com/-X2BDtBBsU20gtp5eYfRKYBq3EVDXE3BfzgKI1QCbD7fdyZCFsC1Wea4NneHyV8WYhmtEM5qF8IiJ5V7Ku8qHg%3Dw240-h480',
   },
