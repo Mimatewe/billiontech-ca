@@ -37,6 +37,11 @@
       "permanent": true
     },
     {
+      "source": "/apps/mama-kids-control",
+      "destination": "/apps/mama-kids-control/",
+      "permanent": true
+    },
+    {
       "source": "/apps/canadian-citizenship-quiz",
       "destination": "/apps/canadian-citizenship-quiz/",
       "permanent": true
